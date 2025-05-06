@@ -21,12 +21,13 @@ _Grigorios Loukides, John Liagouris, Aris Gkoulalas-Divanis and Manolis Terrovit
 # Setup Instructions
 
 1. Clone the repository
-2. Download [`json.hpp`](https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp) and place it inside `third_party/json.hpp`. You can do it by running in a terminal:
+2. Create the `third_party/` folder
+3. Download [`json.hpp`](https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp) and place it inside `third_party/json.hpp`. You can do it by running in a terminal:
    ```
    curl -o third_party/json.hpp https://raw.githubusercontent.com/nlohmann/json/develop/single_include/nlohmann/json.hpp
    ```
-3. Open the project in **Visual Studio Code**
-4. Ensure local `settings.json` includes:
+4. Open the project in **Visual Studio Code**
+5. Ensure local `settings.json` includes:
 
 ```json
 "code-runner.executorMap": {
