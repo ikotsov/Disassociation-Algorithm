@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Ignore all third-party libraries
+third_party/
