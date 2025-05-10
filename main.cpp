@@ -3,19 +3,19 @@
 #include "horpart/horpart.h"
 #include "horpart/utility.h"
 
+const std::string DATASET_FILE = "data/dataset.csv";
+const std::string CONSTRAINTS_FILE = "data/utility_constraints.json";
+
+const size_t k = 3;
+const size_t MAX_CLUSTER_SIZE = 2 * k;
+
 int main()
 {
-    std::string filename = "data/dataset.csv";
-    std::string constraintsFile = "data/utility_constraints.json";
-
-    size_t k = 3;
-    size_t maxClusterSize = 2 * k;
-
-    Dataset dataset = readCSV(filename);
-    UtilityConstraints U = loadUtilityConstraints(constraintsFile);
+    Dataset dataset = readCSV(DATASET_FILE);
+    UtilityConstraints U = loadUtilityConstraints(CONSTRAINTS_FILE);
     std::set<std::string> u;
 
-    auto clusters = HorPart(dataset, {}, U, u, maxClusterSize);
+    auto clusters = HorPart(dataset, {}, U, u, MAX_CLUSTER_SIZE);
 
     int i = 1;
     for (const auto &cluster : clusters)
