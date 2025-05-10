@@ -1,4 +1,5 @@
 #include "utility.h"
+#include "types.h"
 #include <fstream>
 
 using json = nlohmann::json;

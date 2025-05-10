@@ -1,5 +1,5 @@
 #pragma once
-#include "utility.h"
+#include "types.h"
 
 std::vector<Cluster> HorPart(const Dataset &D,
                              std::unordered_set<std::string> ignore,
