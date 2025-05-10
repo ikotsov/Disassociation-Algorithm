@@ -1,6 +1,7 @@
 #include "dataset.h"
 #include <fstream>
 #include <sstream>
+#include <string>
 
 Dataset readCSV(const std::string &filename)
 {

@@ -1,5 +1,9 @@
 #pragma once
 #include "types.h"
+#include <vector>
+#include <unordered_set>
+#include <set>
+#include <string>
 
 std::vector<Cluster> HorPart(const Dataset &D,
                              std::unordered_set<std::string> ignore,

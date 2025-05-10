@@ -1,6 +1,9 @@
 #include "horpart.h"
 #include "frequency.h"
-#include <algorithm>
+#include <unordered_set>
+#include <unordered_map>
+#include <set>
+#include <string>
 
 std::vector<Cluster> HorPart(const Dataset &D,
                              std::unordered_set<std::string> ignore,

@@ -1,5 +1,7 @@
 #include "utility_constraints.h"
 #include "types.h"
+#include "../third_party/json.hpp"
+#include <string>
 #include <fstream>
 
 using json = nlohmann::json;

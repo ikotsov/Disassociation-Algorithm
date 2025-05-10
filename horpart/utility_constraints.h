@@ -1,5 +1,5 @@
 #pragma once
 #include "types.h"
-#include "../third_party/json.hpp"
+#include <string>
 
 UtilityConstraints loadUtilityConstraints(const std::string &filepath);
