@@ -12,7 +12,7 @@ std::vector<Cluster> HorPart(const Dataset &D,
                              size_t maxClusterSize)
 {
 
-    if (D.size() <= maxClusterSize)
+    if (D.size() < maxClusterSize)
         return {D};
 
     // Step 1: Collect T (diagnosis codes in D)
