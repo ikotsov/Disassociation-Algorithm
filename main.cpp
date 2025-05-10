@@ -1,7 +1,7 @@
 #include <iostream>
 #include "horpart/dataset.h"
 #include "horpart/horpart.h"
-#include "horpart/utility.h"
+#include "horpart/utility_constraints.h"
 #include "horpart/types.h"
 
 const std::string DATASET_FILE = "data/dataset.csv";
