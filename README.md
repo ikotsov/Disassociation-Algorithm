@@ -34,6 +34,14 @@ _Grigorios Loukides, John Liagouris, Aris Gkoulalas-Divanis and Manolis Terrovit
   "cpp": "cd $dir && g++ -std=c++17 -I./horpart -I./third_party main.cpp horpart/*.cpp -o main && ./main"
 }
 ```
+or if you are on windows:
+
+```json
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ -std=c++17 -I./horpart -I./third_party main.cpp horpart/*.cpp -o main.exe && main.exe"
+  }
+}
+```
 
 5. Run `main.cpp`
 
