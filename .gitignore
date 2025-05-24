@@ -31,5 +31,8 @@
 *.out
 *.app
 
+# Jupyter Notebook
+.ipynb_checkpoints
+
 # Ignore all third-party libraries
 third_party/
