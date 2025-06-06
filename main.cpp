@@ -20,18 +20,18 @@ int main()
 
     auto clusters = HorPart(dataset, {}, U, u, MAX_CLUSTER_SIZE);
 
-    int i = 1;
-    for (const auto &cluster : clusters)
-    {
-        std::cout << "Cluster " << i++ << ":\n";
-        for (const auto &record : cluster)
-        {
-            for (const auto &code : record)
-                std::cout << code << " ";
-            std::cout << "\n";
-        }
-        std::cout << "-------------------\n";
-    }
+    // int i = 1;
+    // for (const auto &cluster : clusters)
+    // {
+    //     std::cout << "Cluster " << i++ << ":\n";
+    //     for (const auto &record : cluster)
+    //     {
+    //         for (const auto &code : record)
+    //             std::cout << code << " ";
+    //         std::cout << "\n";
+    //     }
+    //     std::cout << "-------------------\n";
+    // }
 
     std::cout << "HorPart produced " << clusters.size() << " clusters.\n";
 
