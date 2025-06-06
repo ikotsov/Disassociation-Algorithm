@@ -12,7 +12,8 @@ _Grigorios Loukides, John Liagouris, Aris Gkoulalas-Divanis and Manolis Terrovit
 ├── data/                      # Contains input dataset and utility constraints
 │   ├── dataset.csv
 │   └── utility_constraints.json
-├── horpart/                   # Core C++ implementation of HorPart
+├── horpart/                   # Horizontal partitioning logic
+├── verpart/                   # Vertical partitioning and refinement logic
 ├── third_party/               # Header-only external dependencies
 │   └── json.hpp
 └──main.cpp                    # Main program entry point
@@ -31,9 +32,10 @@ _Grigorios Loukides, John Liagouris, Aris Gkoulalas-Divanis and Manolis Terrovit
 
 ```json
 "code-runner.executorMap": {
-  "cpp": "cd $dir && g++ -std=c++17 -I./horpart -I./third_party main.cpp horpart/*.cpp -o main && ./main"
+   "cpp": "cd $dir && g++ -std=c++17 -I./horpart -I./verpart -I./third_party main.cpp horpart/*.cpp verpart/*.cpp -o main && ./main"
 }
 ```
+
 or if you are on windows:
 
 ```json
@@ -46,4 +48,4 @@ or if you are on windows:
 
 # Output
 
-The program will load the dataset and utility constraints, apply the HorPart algorithm recursively, and print clustered records.
+The program loads the dataset and utility constraints, applies the HorPart algorithm recursively to cluster records horizontally, then performs vertical partitioning (VerPart) on each cluster, followed by an optional refining step. The final disassociated dataset is exported to a JSON file.
