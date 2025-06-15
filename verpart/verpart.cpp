@@ -8,6 +8,13 @@ VerPartOutput VerPart(const Cluster &P, const UtilityConstraints &U, size_t k, s
 {
     VerPartOutput output;
 
+    // Guard: empty input cluster
+    if (P.empty())
+    {
+        std::cout << "[VerPart] Warning: Empty cluster received.\n";
+        return output;
+    }
+
     // Step 1: Compute support s(t) for each diagnosis code in the cluster P
     std::unordered_map<std::string, int> support; // support count for each code
     std::unordered_set<std::string> TP;           // set of all distinct codes in P
@@ -56,7 +63,7 @@ VerPartOutput VerPart(const Cluster &P, const UtilityConstraints &U, size_t k, s
             grouped[constraint_name] = group;
     }
 
-    // Handle any unassigned codes (i.e., not covered by utility constraints)
+    // Handle unassigned codes not covered by any utility constraint
     for (const auto &code : TP_remaining)
     {
         if (!assigned.count(code))
@@ -65,9 +72,15 @@ VerPartOutput VerPart(const Cluster &P, const UtilityConstraints &U, size_t k, s
 
     size_t v = 0; // number of record chunks created
 
-    // Step 6–20: For each group, project records to its codes and retain only if ≥ k records remain
+    // Step 6–20: Create record chunks per group
     for (const auto &[group_name, group_codes] : grouped)
     {
+        if (group_codes.empty())
+        {
+            std::cout << "[VerPart] Skipping group " << group_name << " (no valid codes).\n";
+            continue;
+        }
+
         std::vector<std::vector<std::string>> projected_group;
         for (const auto &record : P)
         {
@@ -80,16 +93,21 @@ VerPartOutput VerPart(const Cluster &P, const UtilityConstraints &U, size_t k, s
             if (!projected.empty())
                 projected_group.push_back(projected);
         }
-        if (projected_group.size() >= k)
+
+        if (projected_group.size() < k)
         {
-            output.record_chunks.push_back(projected_group);
-            v++;
-            if (v >= m)
-                break; // respect the m constraint
+            std::cout << "[VerPart] Skipping group " << group_name
+                      << " (projected size " << projected_group.size() << " < k=" << k << ").\n";
+            continue;
         }
+
+        output.record_chunks.push_back(projected_group);
+        v++;
+        if (v >= m)
+            break; // enforce m-constraint
     }
 
-    // Step 21–22: Create TT item chunk from infrequent codes
+    // Step 21–22: Construct item chunk (TT)
     std::unordered_set<std::string> item_codes_set;
     for (const auto &record : P)
     {
@@ -102,13 +120,17 @@ VerPartOutput VerPart(const Cluster &P, const UtilityConstraints &U, size_t k, s
         }
     }
 
-    if (!item_codes_set.empty())
+    if (item_codes_set.empty())
+    {
+        std::cout << "[VerPart] No TT chunk created.\n";
+    }
+    else
     {
         std::vector<std::string> merged_item_codes(item_codes_set.begin(), item_codes_set.end());
         std::sort(merged_item_codes.begin(), merged_item_codes.end()); // deterministic order
         output.item_chunk.push_back(merged_item_codes);                // single merged TT chunk
+        std::cout << "[VerPart] TT chunk created with " << merged_item_codes.size() << " codes.\n";
     }
 
-    // Step 23: Return vertical partitioning result
     return output;
 }
