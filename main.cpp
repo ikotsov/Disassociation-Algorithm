@@ -20,6 +20,7 @@ int main()
 
     auto clusters = HorPart(dataset, {}, U, u, MAX_CLUSTER_SIZE);
 
+    // Uncomment the block below if you want to inspect the clusters after horizontal partitioning
     // int i = 1;
     // for (const auto &cluster : clusters)
     // {
@@ -38,6 +39,14 @@ int main()
     std::vector<VerPartOutput> verpart_results;
     for (const auto &cluster : clusters)
     {
+        // Optional: Skip clusters smaller than k to avoid unnecessary VerPart calls
+        // (not strictly required since VerPart handles this internally)
+        // if (cluster.size() < k)
+        // {
+        //     std::cout << "[Main] Skipping cluster of size " << cluster.size() << " (k=" << k << ")\n";
+        //     continue;
+        // }
+
         VerPartOutput vp = VerPart(cluster, U, k, m);
         verpart_results.push_back(vp);
     }
