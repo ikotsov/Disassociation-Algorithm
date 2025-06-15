@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <set>
 #include <string>
+#include <iostream>
 
 std::vector<Cluster> HorPart(const Dataset &D,
                              std::unordered_set<std::string> ignore,
@@ -115,6 +116,12 @@ std::vector<Cluster> HorPart(const Dataset &D,
         u.clear();
     }
 
+    if (a.empty())
+    {
+        std::cout << "[HorPart] No valid splitting code found — returning cluster of size " << D.size() << "\n";
+        return {D};
+    }
+
     // Partition dataset based on 'a'
     ignore.insert(a);
     Dataset D1, D2;
@@ -129,6 +136,9 @@ std::vector<Cluster> HorPart(const Dataset &D,
             D2.push_back(record);
         }
     }
+
+    std::cout << "[HorPart] Splitting on '" << a << "' → D1 size: " << D1.size()
+              << ", D2 size: " << D2.size() << "\n";
 
     auto clusters1 = HorPart(D1, ignore, U, u, maxClusterSize);
     auto clusters2 = HorPart(D2, ignore, U, {}, maxClusterSize);
