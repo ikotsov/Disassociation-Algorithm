@@ -5,10 +5,10 @@
 #include "horpart/types.h"
 #include "verpart/verpart.h"
 
-const std::string DATASET_FILE = "data/dataset.csv";
-const std::string CONSTRAINTS_FILE = "data/utility_constraints.json";
+const std::string DATASET_FILE = "data/dataset_final.csv";
+const std::string CONSTRAINTS_FILE = "data/utility_constraints_final.json";
 
-const size_t k = 3;
+const size_t k = 5;
 const size_t MAX_CLUSTER_SIZE = 2 * k;
 const size_t m = 2;
 
@@ -51,7 +51,7 @@ int main()
         verpart_results.push_back(vp);
     }
 
-    exportToJson(verpart_results, "data/toy_disassociated_output.json");
+    exportToJson(verpart_results, "data/disassociated_output.json");
 
     return 0;
 }
