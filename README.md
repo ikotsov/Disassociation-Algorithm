@@ -48,4 +48,4 @@ or if you are on windows:
 
 # Output
 
-The program loads the dataset and utility constraints, applies the HorPart algorithm recursively to cluster records horizontally, then performs vertical partitioning (VerPart) on each cluster, followed by an optional refining step. The final disassociated dataset is exported to a JSON file.
+The program loads the dataset and utility constraints, applies the HorPart algorithm recursively to cluster records horizontally and then performs vertical partitioning (VerPart) on each cluster. The final disassociated dataset is exported to a JSON file.
